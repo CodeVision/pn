@@ -23,3 +23,14 @@ services:
       MAX: 999_999_999_999
       BROKER_URL: "mqtt://broker"
       PUBLISH_TOPIC: numbers/raw
+  metadata:
+    image: phonenumbers/metadata
+    build:
+      context: .
+      dockerfile: ./services/metadata/Dockerfile
+    depends_on:
+      - broker
+    environment:
+      BROKER_URL: "mqtt://broker"
+      PUBLISH_TOPIC: numbers/enriched
+      SUBSCRIBE_TOPIC: numbers/raw

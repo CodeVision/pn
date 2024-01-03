@@ -11,6 +11,7 @@
   "license": "ISC",
   "workspaces": [
     "services/generator",
-    "libs/phonenumbers-lib"
+    "libs/phonenumbers-lib",
+    "services/metadata"
   ]
 }
