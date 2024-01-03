@@ -11,3 +11,15 @@ services:
       - type: bind
         source: ./config/broker/config/mosquitto.conf
         target: /mosquitto/config/mosquitto.conf
+  generator:
+    image: phonenumbers/generator
+    build:
+      context: .
+      dockerfile: ./services/generator/Dockerfile
+    depends_on:
+      - broker
+    environment:
+      MIN: 10_000_000_000
+      MAX: 999_999_999_999
+      BROKER_URL: "mqtt://broker"
+      PUBLISH_TOPIC: numbers/raw

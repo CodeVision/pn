@@ -1,0 +1,16 @@
+{
+  "name": "phonenumbers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-all": "npm run build --workspaces --if-present",
+    "install-all": "npm install --workspaces --if-present"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "services/generator",
+    "libs/phonenumbers-lib"
+  ]
+}
