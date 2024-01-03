@@ -12,6 +12,7 @@
   "workspaces": [
     "services/generator",
     "libs/phonenumbers-lib",
-    "services/metadata"
+    "services/metadata",
+    "services/store"
   ]
 }

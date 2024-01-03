@@ -11,6 +11,11 @@ services:
       - type: bind
         source: ./config/broker/config/mosquitto.conf
         target: /mosquitto/config/mosquitto.conf
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
   generator:
     image: phonenumbers/generator
     build:
@@ -34,3 +39,16 @@ services:
       BROKER_URL: "mqtt://broker"
       PUBLISH_TOPIC: numbers/enriched
       SUBSCRIBE_TOPIC: numbers/raw
+  store:
+    image: phonenumbers/store
+    build:
+      context: .
+      dockerfile: ./services/store/Dockerfile
+    depends_on:
+      - db
+      - broker
+    environment:
+      DB_URI: "mongodb://db/numbers"
+      BROKER_URL: "mqtt://broker"
+      SUBSCRIBE_TOPIC: numbers/enriched
+
