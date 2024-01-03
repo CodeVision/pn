@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  broker:
+    image: eclipse-mosquitto
+    restart: always
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - type: bind
+        source: ./config/broker/config/mosquitto.conf
+        target: /mosquitto/config/mosquitto.conf
